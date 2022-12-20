@@ -15,7 +15,7 @@ extern "C" {
 #pragma warning disable 520  // Turns off the Function Not Called Warning
 #pragma warning disable 2053  // Turns off the Function Not Called Warning - Inline functions
     
-#include "mcc_generated_files/mcc.h"
+#include "mcc_generated_files/system/system.h"
 #include <xc.h>
 #include <stdint.h>
 #include <stdbool.h>

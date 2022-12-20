@@ -26,7 +26,7 @@
  * 
 */
 
-#include "mcc_generated_files/mcc.h"
+#include "mcc_generated_files/system/system.h"
 #include "misc.h"
 #include "global_defs.h"
 
@@ -43,8 +43,7 @@ void main(void)
     // Initialize the device
     SYSTEM_Initialize();
 
-    
-    TMR0_SetInterruptHandler(IncSysTick);  // Register the Systimer Handler
+    Timer0_OverflowCallbackRegister(IncSysTick);  // Register the Systimer Handler
     
     
     // If using interrupts in PIC18 High/Low Priority Mode you need to enable the Global High and Low Interrupts
@@ -53,21 +52,22 @@ void main(void)
 
     // Enable the Global Interrupts
     INTERRUPT_GlobalInterruptEnable();
-    TMR0_StartTimer();
+    Timer0_Start(); // Start the timer
 
     // Disable the Global Interrupts
     //INTERRUPT_GlobalInterruptDisable();
-    
-    //PWM_SetHigh();
-    
+    PWM_SetHigh();
+    ERROR_LED_SetHigh();
     
     while (1)
     {
         // Add your application code
         DoHeartBeat();
-        ERROR_LED_Toggle();
+        //ERROR_LED_Toggle();
+        PWM_SetLow();
+        __delay_ms(5);
         A2D_Result = ADCC_GetSingleConversion(VBAT);
-        //PWM_Toggle();
+        PWM_SetHigh();
     }
 }
 /**
