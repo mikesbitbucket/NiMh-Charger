@@ -51,6 +51,7 @@ void IncSysTick(void);
 void ClearSysTick(void);
 uint16_t GetSysTick(void);
 void DoHeartBeat(void);
+void FireNewLEDSequence(void);
 
 
 #ifdef	__cplusplus

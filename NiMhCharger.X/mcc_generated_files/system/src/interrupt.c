@@ -85,17 +85,17 @@ void __interrupt() INTERRUPT_InterruptManager (void)
         PIN_MANAGER_IOC();
     }
     // interrupt handler
-    if(PIE4bits.U1TXIE == 1 && PIR4bits.U1TXIF == 1)
+    if(PIE3bits.TMR0IE == 1 && PIR3bits.TMR0IF == 1)
+    {
+        Timer0_OverflowISR();
+    }
+    else if(PIE4bits.U1TXIE == 1 && PIR4bits.U1TXIF == 1)
     {
         UART1_TxInterruptHandler();
     }
     else if(PIE4bits.U1RXIE == 1 && PIR4bits.U1RXIF == 1)
     {
         UART1_RxInterruptHandler();
-    }
-    else if(PIE3bits.TMR0IE == 1 && PIR3bits.TMR0IF == 1)
-    {
-        Timer0_OverflowISR();
     }
     else
     {

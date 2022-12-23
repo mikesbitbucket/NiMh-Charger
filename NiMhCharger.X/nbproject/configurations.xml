@@ -10,6 +10,9 @@
         <logicalFolder name="adc" displayName="adc" projectFiles="true">
           <itemPath>mcc_generated_files/adc/adcc.h</itemPath>
         </logicalFolder>
+        <logicalFolder name="fvr" displayName="fvr" projectFiles="true">
+          <itemPath>mcc_generated_files/fvr/fvr.h</itemPath>
+        </logicalFolder>
         <logicalFolder name="system" displayName="system" projectFiles="true">
           <itemPath>mcc_generated_files/system/interrupt.h</itemPath>
           <itemPath>mcc_generated_files/system/clock.h</itemPath>
@@ -29,6 +32,7 @@
       </logicalFolder>
       <itemPath>global_defs.h</itemPath>
       <itemPath>misc.h</itemPath>
+      <itemPath>charge.h</itemPath>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
                    displayName="Linker Files"
@@ -43,6 +47,11 @@
         <logicalFolder name="adc" displayName="adc" projectFiles="true">
           <logicalFolder name="src" displayName="src" projectFiles="true">
             <itemPath>mcc_generated_files/adc/src/adcc.c</itemPath>
+          </logicalFolder>
+        </logicalFolder>
+        <logicalFolder name="fvr" displayName="fvr" projectFiles="true">
+          <logicalFolder name="src" displayName="src" projectFiles="true">
+            <itemPath>mcc_generated_files/fvr/src/fvr.c</itemPath>
           </logicalFolder>
         </logicalFolder>
         <logicalFolder name="system" displayName="system" projectFiles="true">
@@ -67,6 +76,7 @@
       </logicalFolder>
       <itemPath>main.c</itemPath>
       <itemPath>misc.c</itemPath>
+      <itemPath>charge.c</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"

@@ -40,10 +40,10 @@
   Section: Macro Declarations
 */
 
-#define UART1_TX_BUFFER_SIZE (8) //buffer size should be 2^n
+#define UART1_TX_BUFFER_SIZE (64) //buffer size should be 2^n
 #define UART1_TX_BUFFER_MASK (UART1_TX_BUFFER_SIZE - 1) 
 
-#define UART1_RX_BUFFER_SIZE (8) //buffer size should be 2^n
+#define UART1_RX_BUFFER_SIZE (64) //buffer size should be 2^n
 #define UART1_RX_BUFFER_MASK (UART1_RX_BUFFER_SIZE - 1)
 
 /**
@@ -423,6 +423,18 @@ void UART1_TransmitISR(void)
     {
         (*UART1_TxCompleteInterruptHandler)();
     }
+}
+
+int getch(void)
+{
+    while(!(UART1_IsRxReady()));
+    return UART1_Read();
+}
+
+void putch(char txData)
+{
+    while(!(UART1_IsTxReady()));
+    return UART1_Write(txData);   
 }
 
 

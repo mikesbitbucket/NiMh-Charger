@@ -57,12 +57,32 @@
   @Remarks
     Any additional remarks
  */
-static uint16_t SysTick = 0;
+static uint16_t SysTick = 0, FlashTick = 0;
 static uint16_t Heartbeat_tmr;
 static uint8_t LED_Heartbeat_tmr;
 static uint8_t HighVoltage_tmr = 0;
 static uint8_t PWMDuty;
+static uint8_t f_New_Sequence_Start;
+static uint8_t Flash_Mode, st_Flash; 
 
+
+enum FlashStates
+{
+    START = 0,
+    FIRST_ON,
+    FIRST_OFF,
+    SECOND_ON,
+    SECOND_OFF,
+    FULL_ON
+};
+
+enum FlashModes
+{
+    FLASH_OFF = 0,
+    FLASH_25,  // 25 percent full - 1 flash
+    FLASH_50,
+    FLASH_FULL
+};
 
 /* ************************************************************************** */
 /* ************************************************************************** */
@@ -156,6 +176,7 @@ static uint8_t PWMDuty;
 void IncSysTick(void)
 {
     SysTick++;
+    FlashTick++;
 }
 
 /** 
@@ -210,17 +231,34 @@ uint16_t GetSysTick(void)
 
 void DoHeartBeat()
 {
-    // Heartbeat check
+    // Heartbeat check - Also the Blink Status of the LED
     if((uint16_t)(GetSysTick() - Heartbeat_tmr) >= LED_HEARTBEAT_INTERVAL)
     {
         Heartbeat_tmr = GetSysTick(); // get new time val
-        GRN_LED_Toggle(); // Toggle error light
-
+        FireNewLEDSequence();  // Start a new LED sequence of flashes
+        GRN_LED_Toggle();
+        //Check how we should blink the LED
+        
     } // End LED Beat
     
 }  // end heartbeat
     
+/** 
+  @Function
+    FireNewLEDSequence 
 
+  @Summary
+ * Starts a new round ofLED flashs, etc. depending on charge
+
+  @Remarks
+ *  Heartbeat Stuff
+ */
+void FireNewLEDSequence(void)
+{
+    f_New_Sequence_Start = 1;
+    st_Flash = START;
+    
+}
 
 /* *****************************************************************************
  End of File

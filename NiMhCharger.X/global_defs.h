@@ -30,6 +30,10 @@ extern "C" {
 #define BUTTON_DEBOUNCE_MASK (0b00001111)  // This goes with above number
 #define BUTTON_INTERVAL_CHECK   1 // How often to check the button, this goes with the above define to set the debounce time
 
+    //LED Flash times
+#define FLASH_ON_TIME   10  // In increments of 10ms SysTicks -10 = 100ms
+#define FLASH_OFF_TIME  10  // In increments of 10ms SysTicks -10 = 100ms
+    
 
 #ifdef	__cplusplus
 }

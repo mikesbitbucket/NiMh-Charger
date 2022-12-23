@@ -53,21 +53,25 @@ void main(void)
     // Enable the Global Interrupts
     INTERRUPT_GlobalInterruptEnable();
     Timer0_Start(); // Start the timer
-
+    
+//    printf("Var: %d\n", A2D_Result);
+//    printf("Line 2\n");
+    
+    
     // Disable the Global Interrupts
     //INTERRUPT_GlobalInterruptDisable();
-    PWM_SetHigh();
+    //PWM_SetHigh();
     ERROR_LED_SetHigh();
     
     while (1)
     {
         // Add your application code
         DoHeartBeat();
-        //ERROR_LED_Toggle();
-        PWM_SetLow();
-        __delay_ms(5);
-        A2D_Result = ADCC_GetSingleConversion(VBAT);
-        PWM_SetHigh();
+        ERROR_LED_LAT = ~GRN_LED_GetValue();
+//        PWM_SetLow();
+//        __delay_ms(5);
+//        A2D_Result = ADCC_GetSingleConversion(VBAT);
+//        PWM_SetHigh();
     }
 }
 /**
