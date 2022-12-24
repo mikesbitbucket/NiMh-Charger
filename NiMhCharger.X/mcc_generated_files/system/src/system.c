@@ -52,6 +52,7 @@ void SYSTEM_Initialize(void)
     PIN_MANAGER_Initialize();
     ADCC_Initialize();
     FVR_Initialize();
+    LED_Timer_Initialize();
     Timer0_Initialize();
     UART1_Initialize();
     INTERRUPT_Initialize();

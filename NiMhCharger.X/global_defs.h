@@ -33,7 +33,9 @@ extern "C" {
     //LED Flash times
 #define FLASH_ON_TIME   10  // In increments of 10ms SysTicks -10 = 100ms
 #define FLASH_OFF_TIME  10  // In increments of 10ms SysTicks -10 = 100ms
-    
+
+#define GRN_LED_OFF  GRN_LED_SetLow()
+#define GRN_LED_ON   GRN_LED_SetHigh()
 
 #ifdef	__cplusplus
 }

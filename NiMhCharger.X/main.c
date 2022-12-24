@@ -28,6 +28,7 @@
 
 #include "mcc_generated_files/system/system.h"
 #include "misc.h"
+#include "leds.h"
 #include "global_defs.h"
 
 
@@ -44,6 +45,7 @@ void main(void)
     SYSTEM_Initialize();
 
     Timer0_OverflowCallbackRegister(IncSysTick);  // Register the Systimer Handler
+    LED_Timer_OverflowCallbackRegister(IncLEDTick);  //Register the LED Timer callback
     
     
     // If using interrupts in PIC18 High/Low Priority Mode you need to enable the Global High and Low Interrupts
@@ -53,6 +55,7 @@ void main(void)
     // Enable the Global Interrupts
     INTERRUPT_GlobalInterruptEnable();
     Timer0_Start(); // Start the timer
+    LED_Timer_Start();
     
 //    printf("Var: %d\n", A2D_Result);
 //    printf("Line 2\n");
@@ -61,13 +64,17 @@ void main(void)
     // Disable the Global Interrupts
     //INTERRUPT_GlobalInterruptDisable();
     //PWM_SetHigh();
-    ERROR_LED_SetHigh();
+    //ERROR_LED_SetHigh();
     
     while (1)
     {
         // Add your application code
         DoHeartBeat();
-        ERROR_LED_LAT = ~GRN_LED_GetValue();
+        //ERROR_LED_LAT = ~GRN_LED_GetValue();
+        
+        DoLEDs();
+        
+        
 //        PWM_SetLow();
 //        __delay_ms(5);
 //        A2D_Result = ADCC_GetSingleConversion(VBAT);

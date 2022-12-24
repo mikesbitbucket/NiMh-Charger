@@ -26,6 +26,7 @@
 
 #include "mcc_generated_files/system/system.h"
 #include "misc.h"
+#include "leds.h"
 #include "global_defs.h"
 
 
@@ -231,12 +232,23 @@ uint16_t GetSysTick(void)
 
 void DoHeartBeat()
 {
+    static uint8_t i=0;
+    static uint8_t j=0;
     // Heartbeat check - Also the Blink Status of the LED
     if((uint16_t)(GetSysTick() - Heartbeat_tmr) >= LED_HEARTBEAT_INTERVAL)
     {
         Heartbeat_tmr = GetSysTick(); // get new time val
-        FireNewLEDSequence();  // Start a new LED sequence of flashes
-        GRN_LED_Toggle();
+        
+        i++;
+        if(i >= 20)
+        {
+            i=0;
+            SetGrnLEDPattern(j);
+            j++;
+            if(5 == j) j=0;
+        }
+        //FireNewLEDSequence();  // Start a new LED sequence of flashes
+        //GRN_LED_Toggle();
         //Check how we should blink the LED
         
     } // End LED Beat
