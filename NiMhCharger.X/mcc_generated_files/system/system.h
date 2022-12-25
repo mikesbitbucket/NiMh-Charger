@@ -52,6 +52,7 @@
 #include "../adc/adcc.h"
 #include "../fvr/fvr.h"
 #include "../timer/tmr1.h"
+#include "../timer/tmr2.h"
 #include "../timer/tmr0.h"
 #include "../uart/uart1.h"
 #include "../system/interrupt.h"

@@ -46,7 +46,7 @@ void main(void)
 
     Timer0_OverflowCallbackRegister(IncSysTick);  // Register the Systimer Handler
     LED_Timer_OverflowCallbackRegister(IncLEDTick);  //Register the LED Timer callback
-    
+    mSec_tmr_OverflowCallbackRegister(IncChgTick);  // Register the Charger 1 mSec call back timer
     
     // If using interrupts in PIC18 High/Low Priority Mode you need to enable the Global High and Low Interrupts
     // If using interrupts in PIC Mid-Range Compatibility Mode you need to enable the Global Interrupts
@@ -56,6 +56,7 @@ void main(void)
     INTERRUPT_GlobalInterruptEnable();
     Timer0_Start(); // Start the timer
     LED_Timer_Start();
+    mSec_tmr_Start();
     
 //    printf("Var: %d\n", A2D_Result);
 //    printf("Line 2\n");

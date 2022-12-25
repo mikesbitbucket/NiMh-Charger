@@ -211,7 +211,16 @@ void SetGrnLEDPattern(uint8_t pattern)
     
 }  // End SetGrnLEDPattern
 
+/** 
+  @Function
+    IncLEDTick 
 
+  @Summary
+    Increments the LED Tick timer
+
+  @Remarks
+ Increment the LED Tick Timer - Set this to be every 10ms
+ */
 void IncLEDTick(void)
 {
     LEDTick++;
@@ -219,13 +228,13 @@ void IncLEDTick(void)
 
 /** 
   @Function
-    GetSysEDTick 
+    GetLEDTick 
 
   @Summary
     Gets the current LEDTick
 
   @Remarks
-    Get and return current SysTick
+    Get and return current LEDTick
  */
 uint16_t GetLEDTick(void)
 {
@@ -236,6 +245,8 @@ uint16_t GetLEDTick(void)
     PIE3bits.TMR1IE = 1; // turn on interrupt
     return retval;
 }
+
+
 /* *****************************************************************************
  End of File
  */

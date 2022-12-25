@@ -73,6 +73,9 @@ extern "C" {
     
 
 void DoCharge(void);
+void IncChgTick(void);
+uint16_t GetChgTick(void);
+
 
 #ifdef	__cplusplus
 }

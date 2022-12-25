@@ -85,7 +85,11 @@ void __interrupt() INTERRUPT_InterruptManager (void)
         PIN_MANAGER_IOC();
     }
     // interrupt handler
-    if(PIE3bits.TMR0IE == 1 && PIR3bits.TMR0IF == 1)
+    if(PIE3bits.TMR2IE == 1 && PIR3bits.TMR2IF == 1)
+    {
+        mSec_tmr_ISR();
+    }
+    else if(PIE3bits.TMR0IE == 1 && PIR3bits.TMR0IF == 1)
     {
         Timer0_OverflowISR();
     }

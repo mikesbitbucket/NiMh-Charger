@@ -69,6 +69,8 @@ enum Charge_States
     TOPPING    
 };
 
+static uint16_t ChgTick = 0;
+
 
 /* ************************************************************************** */
 /* ************************************************************************** */
@@ -167,7 +169,40 @@ void DoCharge(void)
     
 }
 
+/** 
+  @Function
+    IncChgTick 
 
+  @Summary
+    Increments the Charge function timer  - set at 1 mSec rate so we can get the 5ms rest times, etc we need
+
+  @Remarks
+ Increment the Charge Tick Timer - Set this to be every 1 ms
+ */
+void IncChgTick(void)
+{
+    ChgTick++;
+}
+
+/** 
+  @Function
+    GetChgTick 
+
+  @Summary
+    Gets the current Charge Timer Tick
+
+  @Remarks
+    Get and return current Charge Timer Tick - this one goes at 1 mSec rates
+ */
+uint16_t GetChgTick(void)
+{
+    uint16_t retval;
+
+    PIE3bits.TMR2IE = 0; // Shut off interrupt
+    retval = LEDTick;
+    PIE3bits.TMR2IE = 1; // turn on interrupt
+    return retval;
+}
 
 /* *****************************************************************************
  End of File
